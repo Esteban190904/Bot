@@ -3,30 +3,39 @@ from openai import OpenAI
 
 client = OpenAI(api_key = st.secrets.OpenAIAPI.openai_api_key)
 
+if "messages" not in st.session_state:
+  st.session_state["messages"] = [
+    {"role": "system", "content": "Think as a trip adviser"}
+  ]
 
+def comunicate():
+  messages = st.session_state["messages"]
+  user_message = {"role":"user", "content": st.session_state["user_input"]}
+  messages.append(user_message)
 
-class Page1:
-  def __init_(self) -> None:
-    from secret_keys import open_api_key
-    self.client = OpenAI(api_key=open_api_key)
+  response = client.chat.completions.create(
+      model="gpt-3.5-turbo",
+      messages = messages
+  )
 
-    prompt = "HOOOLAA MUNDOOOOOOO"
+  bot_message = response.choices[0].message
+  messages.append(bot_message)
 
-    if "trip_adviser_messages" not in st.session_state:
-      st.session_state["trip_adviser_messages"] = [
-          {"rote": "system", "content": prompt}
-      ]
+  st.session_state["user_input"] = ""
 
-    def communicate():
-      pass
+#user interface
 
+st.title("Trip adviser AI")
+st.write("Utilizing the ChatGPT API, this chatbot offers advanced conversational capabilities.")
 
-def main():
-  sidebar = st.sidebar
+user_input = st.text_input("Please enter a message here", key = "user_input", on_change=comunicate)
 
-  page = sidebar.radio("Seleccione Chatbot", ["Trip Adviser", "Bussines adviser"])
+if st.session_state["message"]:
+  message = st.session_state["message"]
 
-  if page == "Trip adviser":
-    Page1()
-  elif page == "Business Adviser":
-    st.session_state["Business_adviser_message"] = []
+  for message in reversed(message[1:]):
+    if isinstance(message, dict):
+      speaker = "😎" if message["role"] == "user" else "🙄"
+      st.write (speaker + ": " + message["content"])
+    else:
+      st.write("😮: " + message.content)

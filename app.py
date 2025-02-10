@@ -1,6 +1,19 @@
 
 import streamlit as st
 
+def main():
+  sidebar = st.sidebar
+
+  page = sidebar.radio("seleccionar chatbot", ["Trip Adviser", "administrator"])
+
+  if page == "Trip Adviser":
+    Page1()
+  elif page == "Busnies":
+    st.session_state["business_adviser_messages"] = []
+    Page2()
+
+if __name__ == "__main__":
+  main()
   
 
 class Page1:
@@ -72,16 +85,3 @@ class Page2:
       messages.append(bot_message)
 
 
-def main():
-  sidebar = st.sidebar
-
-  page = sidebar.radio("seleccionar chatbot", ["Trip Adviser", "administrator"])
-
-  if page == "Trip Adviser":
-    Page1()
-  elif page == "Busnies":
-    st.session_state["business_adviser_messages"] = []
-    Page2()
-
-if __name__ == "__main__":
-  main()

@@ -1,9 +1,6 @@
-import os
+
 import streamlit as st
-try : 
-  from openai import OpenAI
-except: 
-  os.system("pip install openai")
+
   
 
 class Page1:
@@ -11,7 +8,7 @@ class Page1:
     from secret_keys import open_api_key
     self.client = OpenAI(api_key=open_api_key)
 
-    prompt = "piensa como un mapache cuak cuak"
+    prompt = "HOLAAA MUNDOOOOOOOOO"
 
     if "trip_adviser_messages" not in st.session_state:
       st.session_state["trip_adviser_messages"] = [

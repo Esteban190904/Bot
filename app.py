@@ -9,7 +9,7 @@ class Page1:
     from secret_keys import open_api_key
     self.client = OpenAI(api_key=open_api_key)
 
-      st.write(" HOLA MUNDO ")
+     
 
 
    

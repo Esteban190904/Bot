@@ -4,7 +4,7 @@ import streamlit as st
 def main():
   sidebar = st.sidebar
 
-  page = sidebar.radio("seleccionar chatbot", ["Trip Adviser", "administrator"])
+  page = sidebar.radio("seleccionar chatbot", ["Trip Adviser", "Administrator"])
 
   if page == "Trip Adviser":
     Page1()
@@ -29,27 +29,7 @@ class Page1:
       ]
 
 
-    def communicate():
-
-      
-      client = OpenAI(api_key = st.secrets.OpenAIAPI.openai_api_key)
-
-      if "messages" not in st.session_state:
-        st.session_state["messages"] = [  
-          {"role":"system", "content":"piensa en comida"}
-        ]
-      messages = st.session_state["messages"]
-      user_message = {"role":"user", "content": st.session_state["user_input"]}
-      messages.append(user_message)
-
-      response = client.chat.completions.create(
-          model="gpt-3.5-turbo",
-          messages=messages
-      )
-
-      bot_message = response.choices[0].message
-      messages.append(bot_message)
-
+   
 class Page2:
   def __init__(self) -> None:
     from secret_keys import open_api_key

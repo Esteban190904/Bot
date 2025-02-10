@@ -24,9 +24,7 @@ class Page1:
     prompt = "HOLAAA MUNDOOOOOOOOO"
 
     if "trip_adviser_messages" not in st.session_state:
-      st.session_state["trip_adviser_messages"] = [
-          {"rote": "system", "content": prompt}
-      ]
+      st.write(" HOLA MUNDO ")
 
 
    

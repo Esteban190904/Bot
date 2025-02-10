@@ -3,5 +3,6 @@ from openai import OpenAI
 
 client = OpenAI(api_key = st.secrets.OpenAIAPI.openai_api_key)
 
-st.sidebar.title ("sidebar")
-st.sidebar.write ("HOLA MUNDOOOOOOOOOOO")
+sidebar = st.sidebar
+
+page = sidebar.radio("Seleccione Chatbot", ["Trip Adviser", "Bussines adviser"])

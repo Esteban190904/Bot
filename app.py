@@ -3,28 +3,17 @@ from openai import OpenAI
 
 client = OpenAI(api_key = st.secrets.OpenAIAPI.openai_api_key)
 
-class Page1:
-  def __init_(self) -> None:
-    from secret_keys import open_api_key
-    self.client = OpenAI(api_key=open_api_key)
+st.title("Trip adviser AI")
+st.write("Utilizing the ChatGPT API, this chatbot offers advanced conversational capabilities.")
 
-    prompt = "HOOOLAA MUNDOOOOOOO"
+user_input = st.text_input("Please enter a message here", key = "user_input", on_change=comunicate)
 
-    if "trip_adviser_messages" not in st.session_state:
-      st.session_state["trip_adviser_messages"] = [
-          {"rote": "system", "content": prompt}
-      ]
+if st.session_state["message"]:
+  message = st.session_state["message"]
 
-    def communicate():
-      pass
-
-
-def main():
-  sidebar = st.sidebar
-
-  page = sidebar.radio("Seleccione Chatbot", ["Trip Adviser", "Bussines adviser"])
-
-  if page == "Trip adviser":
-    Page1()
-  elif page == "Business Adviser":
-    st.session_state["Business_adviser_message"] = []
+  for message in reversed(message[1:]):
+    if isinstance(message, dict):
+      speaker = "😎" if message["role"] == "user" else "🙄"
+      st.write (speaker + ": " + message["content"])
+    else:
+      st.write("😮: " + message.content)

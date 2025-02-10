@@ -12,7 +12,8 @@ def main():
     st.session_state["business_adviser_messages"] = []
     Page2()
 
-
+if __name__ == "__main__":
+  main()
   
 
 class Page1:

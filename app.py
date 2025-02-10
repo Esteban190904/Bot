@@ -23,7 +23,7 @@ class Page1:
 
     prompt = "HOLAAA MUNDOOOOOOOOO"
 
-    if "trip_adviser_messages" not in st.session_state:
+    if "Trip Adviser" not in st.session_state:
       st.write(" HOLA MUNDO ")
 
 

@@ -31,3 +31,7 @@ def main():
     Page1()
   elif page == "Business Adviser":
     st.session_state["Business_adviser_message"] = []
+    Page2()
+
+if __name__ == "__main__":
+  main()
